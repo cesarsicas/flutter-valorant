@@ -42,25 +42,78 @@ class AgentsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Colors.black87,
-        child: GridView.count(
-          // Create a grid with 2 columns. If you change the scrollDirection to
-          // horizontal, this produces 2 rows.
-          crossAxisCount: 2,
-          // Generate 100 widgets that display their index in the List.
-          children: [
-            AgentItem(
-                url: "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/fullportrait.png",
-                color: Color.fromARGB(230, 232, 130, 12)),
-            AgentItem(
-                url: "https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png",
-                color: Color.fromARGB(230, 202, 85, 22)),
-            AgentItem(
-                url: "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png",
-                color: Color.fromARGB(230, 2,	182,	151)),
-          ],
-        ),
+      backgroundColor: Color.fromARGB(210, 15, 24, 35),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 100,
+          ),
+          Padding(
+            padding: EdgeInsets.all(0),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset(
+                  fit: BoxFit.cover,
+                  height: 250,
+                  'assets/images/agentsbackground.png',
+                  opacity: AlwaysStoppedAnimation(.4),
+                ),
+                Column(
+                  children: [
+                    Text("CHOOSE YOUR\nFAVORITE AGENT",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)),
+                    Text(
+                      "Find more ways to plant the Spike and style on your enemyes with scrappers, strategists, and hunters of every description.",
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            //color: Colors.black87,
+            child: GridView.count(
+              // Create a grid with 2 columns. If you change the scrollDirection to
+              // horizontal, this produces 2 rows.
+              crossAxisCount: 2,
+              // Generate 100 widgets that display their index in the List.
+              children: [
+                AgentItem(
+                    url:
+                        "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/fullportrait.png",
+                    color: Color.fromARGB(230, 232, 130, 12)),
+                AgentItem(
+                    url:
+                        "https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png",
+                    color: Color.fromARGB(230, 202, 85, 22)),
+                AgentItem(
+                    url:
+                        "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png",
+                    color: Color.fromARGB(230, 2, 182, 151)),
+                AgentItem(
+                    url:
+                        "https://media.valorant-api.com/agents/320b2a48-4d9b-a075-30f1-1f93a9b638fa/fullportrait.png",
+                    color: Color.fromARGB(230, 47, 73, 198)),
+                AgentItem(
+                    url:
+                        "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/fullportrait.png",
+                    color: Color.fromARGB(230, 5, 159, 64)),
+                AgentItem(
+                    url:
+                        "https://media.valorant-api.com/agents/117ed9e3-49f3-6512-3ccf-0cada7e3823b/fullportrait.png",
+                    color: Color.fromARGB(230, 146, 146, 150)),
+              ],
+            ),
+          ),
+
+        ],
       ),
     );
   }
@@ -92,7 +145,7 @@ class AgentItem extends StatelessWidget {
                           color: color)),
                 ),
               ),
-              Image.network(height: 300, fit: BoxFit.fitHeight, url),
+              Image.network(height: 300, fit: BoxFit.fill, url),
             ],
           ),
         ));
