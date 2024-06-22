@@ -94,28 +94,58 @@ class AgentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: EdgeInsets.all(8),
-        child: Container(
-          height: 300,
-          child: Stack(
-            alignment: AlignmentDirectional.bottomCenter,
-            children: [
-              Container(
-                height: 140,
-                width: 300,
-                child: ClipPath(
-                  clipper: TsClip(),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(10),
-                              bottomLeft: Radius.circular(10)),
-                          color: agentModel.color)),
+        child: Stack(alignment: Alignment.bottomLeft, children: [
+          Container(
+            height: 300,
+            child: Stack(
+              alignment: AlignmentDirectional.bottomCenter,
+              children: [
+                Container(
+                  height: 140,
+                  width: 300,
+                  child: ClipPath(
+                    clipper: TsClip(),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10)),
+                            color: agentModel.color)),
+                  ),
                 ),
-              ),
-              Image.network(height: 300, fit: BoxFit.fill, agentModel.imageUrl),
-            ],
+                Image.network(
+                    height: 300, fit: BoxFit.fill, agentModel.imageUrl)
+              ],
+            ),
           ),
-        ));
+          Container(
+            height: 80,
+            child: Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    agentModel.role,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                  Text(
+                    agentModel.name,
+                    style: TextStyle(
+                        height: 1.1 ,
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600),
+                  )
+                ],
+              ),
+            ),
+          )
+        ]));
   }
 }
 
