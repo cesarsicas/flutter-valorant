@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'AgentModel.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,31 +15,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
+
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const AgentsScreen(),
+      home: AgentsScreen(
+        agents: AgentModel.agentsSample,
+      ),
     );
   }
 }
 
 class AgentsScreen extends StatelessWidget {
-  const AgentsScreen({super.key});
+  List<AgentModel> agents;
+
+  AgentsScreen({required this.agents, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -84,39 +76,8 @@ class AgentsScreen extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 // Generate 100 widgets that display their index in the List.
-                children: [
-                  AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/eb93336a-449b-9c1b-0a54-a891f7921d69/fullportrait.png",
-                      color: Color.fromARGB(230, 232, 130, 12)),
-                  AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/9f0d8ba9-4140-b941-57d3-a7ad57c6b417/fullportrait.png",
-                      color: Color.fromARGB(230, 202, 85, 22)),
-                  AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/569fdd95-4d10-43ab-ca70-79becc718b46/fullportrait.png",
-                      color: Color.fromARGB(230, 2, 182, 151)),
-                  AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/320b2a48-4d9b-a075-30f1-1f93a9b638fa/fullportrait.png",
-                      color: Color.fromARGB(230, 47, 73, 198)),
-                  AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/707eab51-4836-f488-046a-cda6bf494859/fullportrait.png",
-                      color: Color.fromARGB(230, 5, 159, 64)),
-                  AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/117ed9e3-49f3-6512-3ccf-0cada7e3823b/fullportrait.png",
-                      color: Color.fromARGB(230, 146, 146, 150)),
-                  AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/fullportrait.png",
-                      color: Color.fromARGB(230, 233,123,14)),              AgentItem(
-                      url:
-                          "https://media.valorant-api.com/agents/6f2a04ca-43e0-be17-7f36-b3908627744d/fullportrait.png",
-                      color: Color.fromARGB(230, 46,77,104)),
-                ],
+                children: List.generate(agents.length,
+                    (index) => AgentItem(agentModel: agents[index])),
               ),
             ),
           ],
@@ -127,17 +88,15 @@ class AgentsScreen extends StatelessWidget {
 }
 
 class AgentItem extends StatelessWidget {
-  String url;
-  Color color;
+  AgentModel agentModel;
 
-  AgentItem({required this.url, required this.color, super.key});
+  AgentItem({required this.agentModel, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(5),
+        padding: EdgeInsets.all(8),
         child: Container(
-
           height: 300,
           child: Stack(
             alignment: AlignmentDirectional.bottomCenter,
@@ -149,17 +108,18 @@ class AgentItem extends StatelessWidget {
                   clipper: TsClip(),
                   child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
-                          color: color)),
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(10),
+                              bottomLeft: Radius.circular(10)),
+                          color: agentModel.color)),
                 ),
               ),
-              Image.network(height: 300, fit: BoxFit.fill, url),
+              Image.network(height: 300, fit: BoxFit.fill, agentModel.imageUrl),
             ],
           ),
         ));
   }
 }
-
 
 class TsClip extends CustomClipper<Path> {
   @override
