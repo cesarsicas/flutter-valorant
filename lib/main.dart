@@ -76,12 +76,12 @@ class AgentsScreen extends StatelessWidget {
               ],
             ),
             Container(
-              //color: Colors.blue,
               child: GridView.count(
                 // Create a grid with 2 columns. If you change the scrollDirection to
                 // horizontal, this produces 2 rows.
                 crossAxisCount: 2,
                 physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 // Generate 100 widgets that display their index in the List.
                 children: [
@@ -109,6 +109,13 @@ class AgentsScreen extends StatelessWidget {
                       url:
                           "https://media.valorant-api.com/agents/117ed9e3-49f3-6512-3ccf-0cada7e3823b/fullportrait.png",
                       color: Color.fromARGB(230, 146, 146, 150)),
+                  AgentItem(
+                      url:
+                          "https://media.valorant-api.com/agents/f94c3b30-42be-e959-889c-5aa313dba261/fullportrait.png",
+                      color: Color.fromARGB(230, 233,123,14)),              AgentItem(
+                      url:
+                          "https://media.valorant-api.com/agents/6f2a04ca-43e0-be17-7f36-b3908627744d/fullportrait.png",
+                      color: Color.fromARGB(230, 46,77,104)),
                 ],
               ),
             ),
@@ -130,7 +137,7 @@ class AgentItem extends StatelessWidget {
     return Padding(
         padding: EdgeInsets.all(5),
         child: Container(
-          //color: Colors.amberAccent,
+
           height: 300,
           child: Stack(
             alignment: AlignmentDirectional.bottomCenter,
@@ -142,7 +149,7 @@ class AgentItem extends StatelessWidget {
                   clipper: TsClip(),
                   child: Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius: BorderRadius.only(bottomRight: Radius.circular(10), bottomLeft: Radius.circular(10)),
                           color: color)),
                 ),
               ),
@@ -153,8 +160,7 @@ class AgentItem extends StatelessWidget {
   }
 }
 
-//x ------
-//y ||
+
 class TsClip extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -171,41 +177,3 @@ class TsClip extends CustomClipper<Path> {
     return true;
   }
 }
-
-// class TsClip extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     var path = Path();
-//     path.lineTo(0, size.height);
-//     path.lineTo(size.height, size.longestSide);
-//     path.lineTo(size.width, size.height /2);
-//     //path.lineTo(size.height/2, 0);
-//
-//
-//     path.close();
-//     return path;
-//   }
-//
-//   @override
-//   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-//     return true;
-//   }
-// }
-
-// class TsClip extends CustomClipper<Path> {
-//   @override
-//   Path getClip(Size size) {
-//     var path = Path();
-//     path.lineTo(0, size.height - 100);
-//     path.lineTo(size.width / 2, size.height);
-//     path.lineTo(size.width, size.height - 100);
-//     path.lineTo(size.width, 0);
-//     path.close();
-//     return path;
-//   }
-//
-//   @override
-//   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-//     return false;
-//   }
-// }
