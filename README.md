@@ -1,16 +1,20 @@
-# flutter_valorant
+# Flutter Valorant
 
-A new Flutter project.
 
-## Getting Started
+https://github.com/user-attachments/assets/4b255b19-f8c0-4b23-8ce2-eedb99aca169
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+//WIP 
+Simple app that shows some Valorant characters. Made with studying purposes. 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Based on layout found on Dribble: 
+https://dribbble.com/shots/19267988-Valorant-App-UI-Design-Concept/attachments/14417629
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Technologies
+
+- Flutter
+- Dart
+- API do Valorant (para obter informações atualizadas sobre os personagens)
+
+
